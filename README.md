@@ -159,23 +159,6 @@ VITE_OPENWEATHER_API_KEY=your_openweather_api_key_here
 
 ---
 
-## 📁 Project Structure
-
-```
-SkyCast-Weather-Forecast-App/
-├── 📂 src/
-│   ├── 📂 assets/          # Images and static assets
-│   ├── 📂 components/      # Reusable UI components
-│   ├── 📂 styles/          # CSS stylesheets
-│   └── 📄 main.js          # Main application logic
-├── 📂 public/              # Public assets
-├── 📄 index.html           # Main HTML file
-├── 📄 package.json         # Dependencies
-└── 📄 README.md            # Documentation
-```
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how you can help:
