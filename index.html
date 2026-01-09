@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SkyCast Weather Forecast App Demo | Ultimate Global Weather Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p style="font-size: 0.8rem; letter-spacing: 2px; color: var(--text-dim)">SYNCING SATELLITE DATA</p>
+    </div>
+
+    <div id="alert" class="alert-toast">City not found. Please try again.</div>
+    <div class="bg-overlay" id="mainBg"></div>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="search-group">
+                <div class="search-box">
+                    <input type="text" id="cityInput" placeholder="Enter city name..." autocomplete="off">
+                    <i data-lucide="search" onclick="handleSearch()"></i>
+                </div>
+                <button class="geo-btn" onclick="getGeolocation()" title="Current Location">
+                    <i data-lucide="map-pin"></i>
+                </button>
+            </div>
+
+            <div class="location-meta">
+                <img id="countryFlag" class="flag-icon" src="https://flagcdn.com/w40/un.png" alt="Flag">
+                <div>
+                    <h2 id="cityName" style="font-size: 1.5rem; font-weight: 700;">Loading...</h2>
+                    <p id="fullDate" style="font-size: 0.8rem; color: var(--text-dim);"></p>
+                </div>
+            </div>
+
+            <div class="main-weather">
+                <div id="weatherIconContainer"></div>
+                <div class="temp-display" id="mainTemp">--</div>
+                <div id="weatherDesc" style="text-transform: capitalize; font-weight: 600; font-size: 1.1rem;">--</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.2); border-radius: 15px; padding: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span style="font-size: 0.75rem; color: var(--text-dim);">LOCAL TIME</span>
+                    <span id="localClock" style="font-family: 'JetBrains Mono'; font-weight: 600;">00:00:00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="font-size: 0.75rem; color: var(--text-dim);">COORDINATES</span>
+                    <span id="coords" style="font-family: 'JetBrains Mono'; font-size: 0.7rem;">--</span>
+                </div>
+            </div>
+
+            <div style="margin-top: auto; padding-top: 20px;">
+                <p style="font-size: 0.7rem; color: var(--text-dim); text-align: center;">Powered by OpenWeather &
+                    Lucide</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="unit-toggle">
+                <button class="unit-btn active" onclick="setUnits('metric')" id="btnMetric">°C</button>
+                <button class="unit-btn" onclick="setUnits('imperial')" id="btnImperial">°F</button>
+            </div>
+
+            <div class="stats-grid">
+                <!-- Row 1 -->
+                <div class="stat-card">
+                    <i data-lucide="thermometer" class="stat-icon"></i>
+                    <span class="stat-label">Feels Like</span>
+                    <span class="stat-value" id="feelsLike">--</span>
+                    <span class="stat-footer" id="tempRange">Lo: -- / Hi: --</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="wind" class="stat-icon"></i>
+                    <span class="stat-label">Wind Speed</span>
+                    <span class="stat-value" id="windSpeed">--</span>
+                    <span class="stat-footer" id="windDir">Direction: --</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="droplets" class="stat-icon"></i>
+                    <span class="stat-label">Humidity</span>
+                    <span class="stat-value" id="humidity">--</span>
+                    <span class="stat-footer" id="dewPoint">Dew Point: --</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="sun" class="stat-icon"></i>
+                    <span class="stat-label">UV Index</span>
+                    <span class="stat-value" id="uvIndex">--</span>
+                    <span class="stat-footer" id="uvStatus">Low Risk</span>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="stat-card">
+                    <i data-lucide="eye" class="stat-icon"></i>
+                    <span class="stat-label">Visibility</span>
+                    <span class="stat-value" id="visibility">--</span>
+                    <span class="stat-footer" id="visStatus">Atmosphere: Clear</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="gauge" class="stat-icon"></i>
+                    <span class="stat-label">Pressure</span>
+                    <span class="stat-value" id="pressure">--</span>
+                    <span class="stat-footer">Sea Level Std</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="cloud-rain" class="stat-icon"></i>
+                    <span class="stat-label">Precipitation</span>
+                    <span class="stat-value" id="rain">0 mm</span>
+                    <span class="stat-footer">Past 1h Volume</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="shield" class="stat-icon"></i>
+                    <span class="stat-label">Air Quality</span>
+                    <span class="stat-value" id="aqi">--</span>
+                    <span class="stat-footer" id="aqiDesc">Status: Checking</span>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="stat-card">
+                    <i data-lucide="sunrise" class="stat-icon"></i>
+                    <span class="stat-label">Sunrise</span>
+                    <span class="stat-value" id="sunrise">--</span>
+                    <span class="stat-footer">Dusk to Dawn</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="sunset" class="stat-icon"></i>
+                    <span class="stat-label">Sunset</span>
+                    <span class="stat-value" id="sunset">--</span>
+                    <span class="stat-footer">Golden Hour</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="moon" class="stat-icon"></i>
+                    <span class="stat-label">Cloud Cover</span>
+                    <span class="stat-value" id="clouds">--</span>
+                    <span class="stat-footer">Satellite View</span>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="navigation" class="stat-icon"></i>
+                    <span class="stat-label">Wind Gusts</span>
+                    <span class="stat-value" id="gusts">--</span>
+                    <span class="stat-footer">Short Term Peak</span>
+                </div>
+            </div>
+
+            <div class="forecast-container">
+                <h3
+                    style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px;">
+                    Strategic 5-Day Outlook</h3>
+                <div class="forecast-grid" id="forecastGrid">
+                    <!-- Dynamic forecast items -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="apps.mjs"></script>
+
+</body>
+
+</html>
